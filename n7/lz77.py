@@ -1,6 +1,7 @@
 import math
 import struct
 import time
+import chardet
 
 
 def compression(text, file, max_buffer):
@@ -14,7 +15,7 @@ def compression(text, file, max_buffer):
         turple = make_turple(buffer, next)
         offset = turple[0]
         length = turple[1]
-        char = bytes(turple[2], "ansi")
+        char = bytes(turple[2], "utf-8")
         shifted_offset = offset << 6
         off_length = shifted_offset + length
 
@@ -55,7 +56,7 @@ def decompression(input, output, max_buffer):
     text = ""
     while i < len(input):
         off_length, char = struct.unpack(">Hc", input[i:i+3])
-        char = chr(ord(char.decode('ansi')))
+        char = chr(ord(char.decode('utf-8')))
         offset = off_length >> 6
         length = off_length - (offset << 6)
         i += 3
@@ -77,16 +78,16 @@ def main():
     print("Введите 0 для кодирования, 1 для раскодирования")
     mode = input()
     if mode == "0":
-        text = (open("studies\\tkisi\\Тест_8.txt", mode='r', encoding='cp1251')).read()
-        comp = open("res7.bin", mode='wb')
+        text = (open("/home/alse0722/Desktop/univer/coding_teory/n7/test.txt", mode='r', encoding='cp1251')).read()
+        comp = open("/home/alse0722/Desktop/univer/coding_teory/n7/res.bin", mode='wb')
         start = int(round(time.time() * 1000))
         compression(text, comp, 1024)
         end = int(round(time.time() * 1000))
         print("Текст закодирован и помещен в файл Coding")
         print("Скорость кодирования: " + str((end - start)) + " мc")
     if mode == "1":
-        decomp = open("restore7.txt", mode='w')
-        copm_text = open("res7.bin", mode='rb').read()
+        decomp = open("/home/alse0722/Desktop/univer/coding_teory/n7/restore.txt", mode='w')
+        copm_text = open("/home/alse0722/Desktop/univer/coding_teory/n7/res.bin", mode='rb').read()
         start = int(round(time.time() * 1000))
         decompression(copm_text, decomp, 1024)
         end = int(round(time.time() * 1000))

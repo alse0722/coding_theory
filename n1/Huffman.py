@@ -75,14 +75,15 @@ def main():
     opt = int(input())
 
     if opt == 0:
-        path = '\\home\\alse0722\\Desktop\\univer\\coding_teory\\n1\\test.txt'
+        path = '/home/alse0722/Desktop/univer/coding_teory/n1/test.txt'
         text = read_text_from_txt_file(path)
+        print(text)
         alphabet = get_alphabet(text)
         code = huffman_encode(alphabet, text)
         encoded = "".join(code[ch] for ch in text)
         original_size = os.path.getsize(path)
 
-        with open('\\home\\alse0722\\Desktop\\univer\\coding_teory\\n1\\res.bin', 'wb') as f:
+        with open('/home/alse0722/Desktop/univer/coding_teory/n1/res.bin', 'wb') as f:
             f.write((str(code) + '\n').encode())
             extra_zero = 0 if len(encoded) % 8 == 0 else 8 - len(encoded) % 8
             f.write((str(extra_zero) + '\n').encode())
@@ -91,12 +92,13 @@ def main():
             for i in range(0, len(bts), 8):
                 to_write.append(int(bts[i: i+8], 2))
             f.write(to_write)
-            encoded_size = os.path.getsize('\\home\\alse0722\\Desktop\\univer\\coding_teory\\n1\\res.bin')
-            coeff = original_size / encoded_size
-            print(f'Сжали, коэффициент сжатия: {coeff}')
+            encoded_size = os.path.getsize('/home/alse0722/Desktop/univer/coding_teory/n1/res.bin')
+            print(encoded_size)
+            #coeff = original_size / encoded_size
+            #print(f'Сжали, коэффициент сжатия: {coeff}')
 
     else:
-        with open('\\home\\alse0722\\Desktop\\univer\\coding_teory\\n1\\res.bin', 'rb') as f:
+        with open('/home/alse0722/Desktop/univer/coding_teory/n1/res.bin', 'rb') as f:
             tree = ast.literal_eval(f.readline().decode())
             trim = int(f.readline().decode())
             t = f.read()
@@ -107,7 +109,7 @@ def main():
             trimmed_bitstr = bitstr[trim:]
             result = huffman_decode(trimmed_bitstr, tree)
 
-        with open('\\home\\alse0722\\Desktop\\univer\\coding_teory\\n1\\restored.txt', 'w') as f:
+        with open('/home/alse0722/Desktop/univer/coding_teory/n1/restored.txt', 'w') as f:
             f.write(result)
             print('Разжали')
 

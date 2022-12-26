@@ -5,7 +5,7 @@ opt = int(input('Сжать - 0, Разжать - 1\n'))
 
 if opt == 0:
     start = time.perf_counter()
-    f = open('studies\\tkisi\\Тест_8.txt')
+    f = open('/home/alse0722/Desktop/univer/coding_teory/n5/test.txt')
 
     d = {}
     alphabet = ''
@@ -37,7 +37,7 @@ if opt == 0:
 
     d = dict_sort(d)
 
-    f = open('res5.bin', 'wb')
+    f = open('/home/alse0722/Desktop/univer/coding_teory/n5/res.bin', 'wb')
     f.write((alphabet + '\n').encode())
     alphabet = sorted(alphabet)
 
@@ -85,7 +85,7 @@ if opt == 0:
 
 else:
     start = time.perf_counter()
-    f = open("res5.bin", "rb")
+    f = open("/home/alse0722/Desktop/univer/coding_teory/n5/res.bin", "rb")
 
     d = {}
     tree = {}
@@ -136,7 +136,7 @@ else:
     ans = ans.replace('_', ' ')
     ans = ans.replace('*', '\n')
 
-    f = open("restore5.txt", "w")
+    f = open("/home/alse0722/Desktop/univer/coding_teory/n5/restore.txt", "w")
     f.write(ans)
     f.close()
     print(f'{time.perf_counter() - start} seconds')

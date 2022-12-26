@@ -14,7 +14,7 @@ def to_bin(x):
 
 if ans == 0:
 
-    a = open('studies\\tkisi\\Тест_8.txt')
+    a = open('/home/alse0722/Desktop/univer/coding_teory/n3/test.txt')
     start_time = time.perf_counter()
 
     text = a.read()
@@ -71,7 +71,7 @@ if ans == 0:
 
     print('Сопоставим исходным символам их код: ', dictionary)
 
-    bin_file = open('res3.bin', 'wb+')
+    bin_file = open('/home/alse0722/Desktop/univer/coding_teory/n3/res.bin', 'wb+')
 
     l = list(dictionary.keys())
     bin_file.write(b' ')
@@ -111,7 +111,7 @@ if ans == 0:
 
 else:
 
-    bf = open('res3.bin', 'rb')
+    bf = open('/home/alse0722/Desktop/univer/coding_teory/n3/res.bin', 'rb')
 
     start_time = time.perf_counter()
 
@@ -166,7 +166,7 @@ else:
         output_text = '0' + output_text[2:]
     #print(dec_dict, output_text)
 
-    out_f = open('restore3.txt', 'w')
+    out_f = open('/home/alse0722/Desktop/univer/coding_teory/n3/restore.txt', 'w')
 
     final_text = ''
     a = ''

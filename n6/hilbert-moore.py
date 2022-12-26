@@ -1,7 +1,7 @@
 opt = int(input('Сжать - 0, Разжать - 1\n'))
 
 if opt == 0:
-    f = open('studies\\tkisi\\Тест_8.txt')
+    f = open('/home/alse0722/Desktop/univer/coding_teory/n6/test.txt')
 
     d = {}
     tree = {}
@@ -77,7 +77,7 @@ if opt == 0:
     tree = create_tree(d)
     alphabet = create_alphabet(tree, d)
 
-    f = open("res6.bin", "wb")
+    f = open("/home/alse0722/Desktop/univer/coding_teory/n6/res.bin", "wb")
     keys = ''
     for i in list(alphabet.keys()):
         keys += i + ' ' + alphabet[i] + ' '
@@ -104,7 +104,7 @@ if opt == 0:
     f.close()
 
 else:
-    f = open("res6.bin", "rb")
+    f = open("/home/alse0722/Desktop/univer/coding_teory/n6/res.bin", "rb")
 
     d = {}
     tree = {}
@@ -155,6 +155,6 @@ else:
     ans = ans.replace('_', ' ')
     ans = ans.replace('*', '\n')
 
-    f = open("restore6.txt", "w")
+    f = open("/home/alse0722/Desktop/univer/coding_teory/n6/restore.txt", "w")
     f.write(ans)
     f.close()

@@ -1,6 +1,6 @@
 import sys
 import getopt
-sys.path.insert(0, "studies\\tkisi")
+sys.path.insert(0, "/home/alse0722/Desktop/univer/coding_teory/n4/")
 from tree import Node
 import array
 import time
@@ -139,15 +139,14 @@ def bytes2bits (textbin):
 
 
 
-def main(argv = '-e studies\\tkisi'):
-    argv = []
+def main(argv = '-e /home/alse0722/Desktop/univer/coding_teory/n4/'):
+    argv = ['-e', '/home/alse0722/Desktop/univer/coding_teory/n4/test.txt']
     e_d = 'd'
     body = 'Compressed'
     r = 'bin'
     for i in range(11, 12):
-        argv.append( f'-{e_d}  studies\\tkisi\\{body}{i}.{r}'.split('  ')[0] )
-        argv.append( f'-{e_d}  studies\\tkisi\\{body}{i}.{r}'.split('  ')[1] )
-           
+        argv.append( f'-{e_d}  /home/alse0722/Desktop/univer/coding_teory/n4/{body}{i}.{r}'.split('  ')[0] )
+        argv.append( f'-{e_d}  /home/alse0722/Desktop/univer/coding_teory/n4/{body}{i}.{r}'.split('  ')[1] )     
     try:
         opts, args = getopt.getopt(argv, "e:d:")
     except getopt.GetoptError:
@@ -158,13 +157,15 @@ def main(argv = '-e studies\\tkisi'):
     i = 11
     for opt, arg in opts:
         if opt == '-e':
+            print("ENCODE!")
             with open(arg) as f:
                 text = f.read()
+            print(text)
             datac = array.array('B')
             start = int(round(time.time() * 1000))
             result = str(FGK().encode(text))
-            copm_text = (open(f"Compressed{i}.txt", mode='w'))
-            bintext = (open(f"Compressed{i}.bin", mode="wb"))
+            copm_text = (open(f"/home/alse0722/Desktop/univer/coding_teory/n4/Compressed{i}.txt", mode='w'))
+            bintext = (open(f"/home/alse0722/Desktop/univer/coding_teory/n4/Compressed{i}.bin", mode="wb"))
             tmp = result
             while len(result) > 0:
                 datac.append(int(result[:8], 2))
@@ -178,10 +179,12 @@ def main(argv = '-e studies\\tkisi'):
             bintext.close()
             i += 1
         elif opt == '-d':
+            print("DECODE!")
             with open(arg, 'rb') as f:
                 bincode = bytes2bits(f)
             result = FGK().decode(bincode)
-            decomp = open(f"Original{i}.txt", mode='w')
+            print(result)
+            decomp = open(f"/home/alse0722/Desktop/univer/coding_teory/n4/Original{i}.txt", mode='w')
             decomp.write(result)
             decomp.close()
 

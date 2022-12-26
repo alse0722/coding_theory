@@ -7,7 +7,7 @@ def compression(text, file):
     for node in tree:
         pair = node[0]
         first = pair[0]
-        second = bytes(pair[1], "ansi")
+        second = bytes(pair[1], "utf-8")
         byte = struct.pack(">Hc", first, second)
         file.write(byte)
 
@@ -54,7 +54,7 @@ def decompression(input, output):
     tree = []
     while i < len(input):
         index, char = struct.unpack(">Hc", input[i:i+3])
-        char = chr(ord(char.decode('ansi')))
+        char = chr(ord(char.decode('utf-8')))
         i += 3
         idx += 1
         if index == 0:
@@ -68,21 +68,21 @@ def decompression(input, output):
 def main():
     mode = input()  # 0 - Архивация, 1 - Разархивация
     if mode == "0":
-        input_t = parse('studies\\tkisi\\Тест_3.txt')
-        comp = open("res8.bin", mode='wb')
+        input_t = parse('/home/alse0722/Desktop/univer/coding_teory/n8/test.txt')
+        comp = open("/home/alse0722/Desktop/univer/coding_teory/n8/res.bin", mode='wb')
         start = int(round(time.time() * 1000))
         compression(input_t, comp)
         end = int(round(time.time() * 1000))
         print("Скорость сжатия: " + str((end - start)) + " мc")
     if mode == "1":
-        decompressed = open('restore8.txt', mode='w', encoding='ansi')
-        compressed = open("res8.bin", mode='rb').read()
+        decompressed = open('/home/alse0722/Desktop/univer/coding_teory/n8/restore.txt', mode='w', encoding='utf-8')
+        compressed = open("/home/alse0722/Desktop/univer/coding_teory/n8/res.bin", mode='rb').read()
         decompression(compressed, decompressed)
 
 
 def parse(file):
     r = []
-    f = open(file, "r", encoding='ansi')
+    f = open(file, "r", encoding='utf-8')
     text = f.read()
     return text
 

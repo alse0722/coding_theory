@@ -1,4 +1,4 @@
-f = open("res5.bin", "rb")
+f = open("/home/alse0722/Desktop/univer/coding_teory/n5/res.bin", "rb")
 
 alph_list = []
 text = ''
@@ -42,6 +42,6 @@ for i in alph_list:
 ans = ans.replace('_', ' ')
 ans = ans.replace('*', '\n')
 
-f = open("restore5.txt", "w")
+f = open("/home/alse0722/Desktop/univer/coding_teory/n5/restore.txt", "w")
 f.write(ans)
 f.close()
